@@ -1,4 +1,4 @@
-![image-20221209110043449](image/README/image-20221209110043449.png)
+![image-20221209110043449](image/README/1684165108000.png)
 
 # 1、概述
 
@@ -10,7 +10,7 @@ Spring 自诞生以来备受青睐，一直被广大开发人员作为 Java 企�
 
 自 2004 年 4 月，Spring 1.0 版本正式发布以来，Spring 已经步入到了第 6 个大版本，也就是 Spring 6。本课程采用Spring当前最新发布的正式版本**6.0.2**。
 
-![image-20221216223135162](image/README/image-20221201102513199.png)
+![image-20221216223135162](image/README/1684165108010.png)
 
 
 
@@ -60,9 +60,9 @@ Spring 有两个最核心模块： IoC 和 AOP。
 
 官网地址：https://spring.io/
 
-![image-20221207142746771](image/README/image-20221207142746771.png)
+![image-20221207142746771](image/README/1684165108020.png)
 
-![image-2097896352](image/README/2097896352.png)
+![image-2097896352](image/README/1684165108030.png)
 
 上图中包含了 Spring 框架的所有模块，这些模块可以满足一切企业级应用开发的需求，在开发过程中可以根据需求有选择性地使用所需要的模块。下面分别对这些模块的作用进行简单介绍。
 
@@ -113,7 +113,7 @@ spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念�
 
 **（1）Spring6要求JDK最低版本是JDK17**
 
-![image-20221201103138194](image/README/image-20221201103138194.png)
+![image-20221201103138194](image/README/1684165108040.png)
 
 ### 1.5.2、本课程软件版本
 
@@ -143,23 +143,23 @@ spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念�
 
 在idea中，依次单击 File -> New -> Project -> New Project
 
-![image-20221205201741893](image/README/image-20221205201741893.png)
+![image-20221205201741893](image/README/1684165108050.png)
 
 
 
 点击“Create”
 
-![image-20221205202000198](image/README/image-20221205202000198.png)
+![image-20221205202000198](image/README/1684165108060.png)
 
 删除src目录
 
 **（2）构建子模块spring6-first**
 
-![image-20221205202117383](image/README/image-20221205202117383.png)
+![image-20221205202117383](image/README/1684165108070.png)
 
 点击 Create 完成
 
-![image-20221205202154225](image/README/image-20221205202154225.png)
+![image-20221205202154225](image/README/1684165108080.png)
 
 
 
@@ -192,7 +192,7 @@ https://spring.io/projects/spring-framework#learn
 
 **查看依赖：**
 
-![image-20221201105416558](image/README/image-20221201105416558.png)
+![image-20221201105416558](image/README/1684165108090.png)
 
 ### 2.3.2、创建java类
 
@@ -211,7 +211,7 @@ public class HelloWorld {
 
 在resources目录创建一个 Spring 配置文件 beans.xml（配置文件名称可随意命名，如：springs.xm）
 
-![img007](image/README/img007.png)
+![img007](image/README/1684165108100.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -253,7 +253,7 @@ public class HelloWorldTest {
 
 ### 2.3.5、运行测试程序
 
-![image-20221031172354535](image/README/image-20221031172354535.png)
+![image-20221031172354535](image/README/1684165108110.png)
 
 
 
@@ -280,7 +280,7 @@ public class HelloWorld {
 
 执行结果：
 
-![image-20221031181430720](image/README/image-20221031181430720.png)
+![image-20221031181430720](image/README/1684165108120.png)
 
 **测试得知：创建对象时确实调用了无参数构造方法。**
 
@@ -414,7 +414,7 @@ Map<String,BeanDefinition> , 其中 String是Key , 默认是类名首字母小�
 
 运行原测试程序
 
-![image-20221031214305224](image/README/image-20221031214305224.png)
+![image-20221031214305224](image/README/1684165108130.png)
 
 运行原测试程序，多了spring打印日志
 
@@ -439,7 +439,7 @@ public class HelloWorldTest {
 
 控制台：
 
-![image-20221031214547501](image/README/image-20221031214547501.png)
+![image-20221031214547501](image/README/1684165108140.png)
 
 
 
@@ -497,7 +497,7 @@ BeanFactory 的子接口，提供了更多高级特性。面向 Spring 的使用
 
 **③ApplicationContext的主要实现类**
 
-![iamges](image/README/img005.png)
+![iamges](image/README/1684165108150.png)
 
 | 类型名                          | 简介                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
@@ -1282,7 +1282,7 @@ public void setTeacherMap(Map<String, Teacher> teacherMap) {
 
 **②创建外部属性文件**
 
-![images](image/README/img010.png)
+![images](image/README/1684165108160.png)
 
 ```properties
 jdbc.user=root
@@ -2216,7 +2216,7 @@ public class UserTest {
 
 测试结果：
 
-![image-20221101153556681](image/README/image-20221101153556681.png)
+![image-20221101153556681](image/README/1684165108170.png)
 
 以上构造方法和setter方法都没有提供，经过测试，仍然可以注入成功。
 
@@ -3360,7 +3360,7 @@ public interface Calculator {
 
 ### 5.1.2、创建实现类
 
-![images](image/README/img014.png)
+![images](image/README/1684165108180.png)
 
 ```java
 public class CalculatorImpl implements Calculator {
@@ -3409,7 +3409,7 @@ public class CalculatorImpl implements Calculator {
 
 ### 5.1.3、创建带日志功能的实现类
 
-![images](image/README/img015.png)
+![images](image/README/1684165108190.png)
 
 ```java
 public class CalculatorLogImpl implements Calculator {
@@ -3499,11 +3499,11 @@ public class CalculatorLogImpl implements Calculator {
 
 二十三种设计模式中的一种，属于结构型模式。它的作用就是通过提供一个代理类，让我们在调用目标方法的时候，不再是直接对目标方法进行调用，而是通过代理类**间接**调用。让不属于目标方法核心逻辑的代码从目标方法中剥离出来——**解耦**。调用目标方法时先调用代理对象的方法，减少对目标方法的调用和打扰，同时让附加功能能够集中在一起也有利于统一维护。
 
-![images](image/README/img016.png)
+![images](image/README/1684165108200.png)
 
 使用代理后：
 
-![images](image/README/img017.png)
+![images](image/README/1684165108210.png)
 
 **②生活中的代理**
 
@@ -3556,7 +3556,7 @@ public class CalculatorStaticProxy implements Calculator {
 
 ### 5.2.3、动态代理
 
-![images](image/README/img018.png)
+![images](image/README/1684165108220.png)
 
 生产代理对象的工厂类：
 
@@ -3640,7 +3640,7 @@ AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领�
 
 这个概念不是语法层面的，而是根据附加功能的逻辑上的需要：有十个附加功能，就有十个横切关注点。
 
-![images](image/README/img019.png)
+![images](image/README/1684165108230.png)
 
 #### ②通知（增强）
 
@@ -3654,13 +3654,13 @@ AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领�
 - 后置通知：在被代理的目标方法**最终结束**后执行（**盖棺定论**）
 - 环绕通知：使用try...catch...finally结构围绕**整个**被代理的目标方法，包括上面四种通知对应的所有位置
 
-![images](image/README/img020.png)
+![images](image/README/1684165108240.png)
 
 #### ③切面
 
 封装通知方法的类。
 
-![images](image/README/img021.png)
+![images](image/README/1684165108250.png)
 
 #### ④目标
 
@@ -3676,7 +3676,7 @@ AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领�
 
 把方法排成一排，每一个横切位置看成x轴方向，把方法从上到下执行的顺序看成y轴，x轴和y轴的交叉点就是连接点。**通俗说，就是spring允许你使用通知的地方**
 
-![images](image/README/img022.png)
+![images](image/README/1684165108260.png)
 
 #### ⑦切入点
 
@@ -3702,11 +3702,11 @@ AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领�
 
 ### 5.4.1、技术说明
 
-![images](image/README/img023.png)
+![images](image/README/1684165108270.png)
 
 
 
-![image-20221216132844066](image/README/image-20221216132844066.png)
+![image-20221216132844066](image/README/1684165108280.png)
 
 - 动态代理分为JDK动态代理和cglib动态代理
 - 当目标类有接口的情况使用JDK动态代理和cglib动态代理，没有接口时只能使用cglib动态代理
@@ -3936,7 +3936,7 @@ public class CalculatorTest {
 
 执行结果：
 
-![image-20221102155523983](image/README/image-20221102155523983.png)
+![image-20221102155523983](image/README/1684165108290.png)
 
 
 
@@ -3967,7 +3967,7 @@ public class CalculatorTest {
 
 **①作用**
 
-![images](image/README/img024.png)
+![images](image/README/1684165108300.png)
 
 **②语法细节**
 
@@ -3991,7 +3991,7 @@ public class CalculatorTest {
   - 例如：execution(public int *..*Service.*(.., int))	正确
   	 例如：execution(* int *..*Service.*(.., int))	错误
 
-![images](image/README/img025.png)
+![images](image/README/1684165108310.png)
 
 
 
@@ -4108,7 +4108,7 @@ public Object aroundMethod(ProceedingJoinPoint joinPoint){
 - @Order(较小的数)：优先级高
 - @Order(较大的数)：优先级低
 
-![images](image/README/img026.png)
+![images](image/README/1684165108320.png)
 
 
 
@@ -4307,7 +4307,7 @@ public class SpringJUnit4Test {
 
 ### 7.1.1、简介
 
-![image-20221217115515670](image/README/image-20221217115515670.png)
+![image-20221217115515670](image/README/1684165108330.png)
 
 Spring 框架对 JDBC 进行封装，使用 JdbcTemplate 方便实现对数据库操作
 
@@ -5191,9 +5191,9 @@ public class TxByAllAnnotationTest {
 
 ## 8.1、Spring Resources概述
 
-![image-20221218154945878](image/README/image-20221218154945878.png)
+![image-20221218154945878](image/README/1684165108340.png)
 
-![image-20221206231535991](image/README/image-20221206231535991.png)
+![image-20221206231535991](image/README/1684165108350.png)
 
 Java的标准java.net.URL类和各种URL前缀的标准处理程序无法满足所有对low-level资源的访问，比如：没有标准化的 URL 实现可用于访问需要从类路径或相对于 ServletContext 获取的资源。并且缺少某些Spring所需要的功能，例如检测某资源是否存在等。**而Spring的Resource声明了访问low-level资源的能力。**
 
@@ -5282,7 +5282,7 @@ file: ------该前缀用于从文件系统中读取资源
 
 **创建一个maven子模块spring6-resources，配置Spring依赖（参考前面）**
 
-![image-20221207102315185](image/README/image-20221207102315185.png)
+![image-20221207102315185](image/README/1684165108360.png)
 
 ```java
 package com.atguigu.spring6.resources;
@@ -5339,7 +5339,7 @@ ClassPathResource 用来访问类加载路径下的资源，相对于其他的 R
 
 **实验：在类路径下创建文件atguigu.txt，使用ClassPathResource 访问**
 
-![image-20221207103020854](image/README/image-20221207103020854.png)
+![image-20221207103020854](image/README/1684165108370.png)
 
 ```java
 package com.atguigu.spring6.resources;
@@ -5438,7 +5438,7 @@ InputStreamResource 是给定的输入流(InputStream)的Resource实现。它的
 
 上述Resource实现类与Resource顶级接口之间的关系可以用下面的UML关系模型来表示
 
-![image-20221206232920494](image/README/image-20221206232920494.png)
+![image-20221206232920494](image/README/1684165108380.png)
 
 
 
@@ -5770,7 +5770,7 @@ ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:bean*.xm
 
 # 9、国际化：i18n
 
-![image-20221218154728062](image/README/image-20221218154728062.png)
+![image-20221218154728062](image/README/1684165108390.png)
 
 ## 9.1、i18n概述
 
@@ -5801,11 +5801,11 @@ ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:bean*.xm
 
 **第一步 创建子模块spring6-i18n，引入spring依赖**
 
-![image-20221207122500801](image/README/image-20221207122500801.png)
+![image-20221207122500801](image/README/1684165108400.png)
 
 **第二步 在resource目录下创建两个配置文件：messages_zh_CN.propertes和messages_en_GB.propertes**
 
-![image-20221207124839565](image/README/image-20221207124839565.png)
+![image-20221207124839565](image/README/1684165108410.png)
 
 **第三步 测试**
 
@@ -5860,7 +5860,7 @@ spring中国际化是通过MessageSource这个接口来支持的
 
 **{0},{1}这样内容，就是动态参数**
 
-![image-20221207140024056](image/README/image-20221207140024056.png)
+![image-20221207140024056](image/README/1684165108420.png)
 
 **（1）创建atguigu_en_US.properties**
 
@@ -5932,11 +5932,11 @@ public class Demo2 {
 
 # 10、数据校验：Validation
 
-![image-20221218154808754](image/README/image-20221218154808754.png)
+![image-20221218154808754](image/README/1684165108430.png)
 
 ## 10.1、Spring Validation概述
 
-![image-20221206220207266](image/README/image-20221206220207266.png)
+![image-20221206220207266](image/README/1684165108440.png)
 
 在开发中，我们经常遇到参数校验的需求，比如用户注册的时候，要校验用户名不能为空、用户名长度不超过20个字符、手机号是合法的手机号格式等等。如果使用普通方式，我们会把校验的代码和真正的业务处理逻辑耦合在一起，而且如果未来要新增一种校验逻辑也需要在修改多个地方。而spring validation允许通过注解的方式来定义对象校验规则，把校验和业务逻辑分离开，让代码编写更加方便。Spring Validation其实就是对Hibernate Validator进一步的封装，方便在Spring中使用。
 
@@ -5956,7 +5956,7 @@ public class Demo2 {
 
 **第一步 创建子模块 spring6-validator**
 
-![image-20221206221002615](image/README/image-20221206221002615.png)
+![image-20221206221002615](image/README/1684165108450.png)
 
 
 
@@ -6415,7 +6415,7 @@ public class CannotBlankValidator implements ConstraintValidator<CannotBlank, St
 
 # 11、提前编译：AOT
 
-![image-20221218154841001](image/README/image-20221218154841001.png)
+![image-20221218154841001](image/README/1684165108460.png)
 
 ## 11.1、AOT概述
 
@@ -6437,7 +6437,7 @@ AOT 编译能直接将源代码转化为机器码，内存占用低，启动速�
 .java -> .class -> (使用jaotc编译工具) -> .so（程序函数库,即编译好的可以供其他程序使用的代码和数据）
 ```
 
-![image-20221207113544080](image/README/image-20221207113544080.png)
+![image-20221207113544080](image/README/1684165108470.png)
 
 **（3）AOT的优点**
 
@@ -6492,33 +6492,33 @@ Native Image 是一项创新技术，可将 Java 代码编译成独立的本机�
 
 进入官网下载：https://www.graalvm.org/downloads/
 
-![image-20221207153944132](image/README/image-20221207153944132.png)
+![image-20221207153944132](image/README/1684165108480.png)
 
-![image-20221207152841304](image/README/image-20221207152841304.png)
+![image-20221207152841304](image/README/1684165108490.png)
 
 #### （2）配置环境变量
 
 **添加GRAALVM_HOME**
 
-![image-20221207110539954](image/README/image-20221207110539954.png)
+![image-20221207110539954](image/README/1684165108500.png)
 
 **把JAVA_HOME修改为graalvm的位置**
 
-![image-20221207153724340](image/README/image-20221207153724340.png)
+![image-20221207153724340](image/README/1684165108510.png)
 
 **把Path修改位graalvm的bin位置**
 
-![image-20221207153755732](image/README/image-20221207153755732.png)
+![image-20221207153755732](image/README/1684165108520.png)
 
 **使用命令查看是否安装成功**
 
-![image-20221207153642253](image/README/image-20221207153642253.png)
+![image-20221207153642253](image/README/1684165108530.png)
 
 #### （3）安装native-image插件
 
 **使用命令 gu install native-image下载安装**
 
-![image-20221207155009832](image/README/image-20221207155009832.png)
+![image-20221207155009832](image/README/1684165108540.png)
 
 
 
@@ -6528,33 +6528,33 @@ Native Image 是一项创新技术，可将 Java 代码编译成独立的本机�
 
 https://visualstudio.microsoft.com/zh-hans/downloads/
 
-![image-20221219112426052](image/README/image-20221219112426052.png)
+![image-20221219112426052](image/README/1684165108550.png)
 
 #### （2）安装Visual Studio
 
-![image-20221207155726572](image/README/image-20221207155726572.png)
+![image-20221207155726572](image/README/1684165108560.png)
 
-![image-20221207155756512](image/README/image-20221207155756512.png)
+![image-20221207155756512](image/README/1684165108570.png)
 
 #### （3）添加Visual Studio环境变量
 
 配置INCLUDE、LIB和Path
 
-![image-20221207110947997](image/README/image-20221207110947997.png)
+![image-20221207110947997](image/README/1684165108580.png)
 
 
 
-![image-20221207111012582](image/README/image-20221207111012582.png)
+![image-20221207111012582](image/README/1684165108590.png)
 
 
 
-![image-20221207111105569](image/README/image-20221207111105569.png)
+![image-20221207111105569](image/README/1684165108600.png)
 
 
 
 #### （4）打开工具，在工具中操作
 
-![image-20221207111206279](image/README/image-20221207111206279.png)
+![image-20221207111206279](image/README/1684165108610.png)
 
 
 
@@ -6573,29 +6573,29 @@ public class Hello {
 
 #### （2）复制文件到目录，执行编译
 
-![image-20221207111420056](image/README/image-20221207111420056.png)
+![image-20221207111420056](image/README/1684165108620.png)
 
 #### （3）Native Image 进行构建
 
-![image-20221207111509837](image/README/image-20221207111509837.png)
+![image-20221207111509837](image/README/1684165108630.png)
 
-![image-20221207111609878](image/README/image-20221207111609878.png)
+![image-20221207111609878](image/README/1684165108640.png)
 
 #### （4）查看构建的文件
 
-![image-20221207111644950](image/README/image-20221207111644950.png)
+![image-20221207111644950](image/README/1684165108650.png)
 
 #### （5）执行构建的文件
 
-![image-20221207111731150](image/README/image-20221207111731150.png)
+![image-20221207111731150](image/README/1684165108660.png)
 
 可以看到这个Hello最终打包产出的二进制文件大小为11M，这是包含了SVM和JDK各种库后的大小，虽然相比C/C++的二进制文件来说体积偏大，但是对比完整JVM来说，可以说是已经是非常小了。
 
 相比于使用JVM运行，Native Image的速度要快上不少，cpu占用也更低一些，从官方提供的各类实验数据也可以看出Native Image对于启动速度和内存占用带来的提升是非常显著的：
 
-![image-20221207111947283](image/README/image-20221207111947283.png)
+![image-20221207111947283](image/README/1684165108670.png)
 
 
 
-![image-20221207112009852](image/README/image-20221207112009852.png)
+![image-20221207112009852](image/README/1684165108680.png)
 
