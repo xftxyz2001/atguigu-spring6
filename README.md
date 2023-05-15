@@ -3,7 +3,6 @@
 # 1、概述
 
 ## 1.1、Spring是什么？
-
 Spring 是一款主流的 Java EE 轻量级开源框架 ，Spring 由“Spring 之父”Rod Johnson 提出并创立，其目的是用于简化 Java 企业级应用的开发难度和开发周期。Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。Spring 框架除了自己提供功能外，还提供整合其他技术和框架的能力。
 
 Spring 自诞生以来备受青睐，一直被广大开发人员作为 Java 企业级应用程序开发的首选。时至今日，Spring 俨然成为了 Java EE 代名词，成为了构建 Java EE 应用的事实标准。
@@ -11,23 +10,20 @@ Spring 自诞生以来备受青睐，一直被广大开发人员作为 Java 企�
 自 2004 年 4 月，Spring 1.0 版本正式发布以来，Spring 已经步入到了第 6 个大版本，也就是 Spring 6。本课程采用Spring当前最新发布的正式版本**6.0.2**。
 
 ![image-20221216223135162](image/README/1684165108010.png)
-
+[Spring Framework](https://spring.io/projects/spring-framework#learn)
 
 
 ## 1.2、Spring 的狭义和广义
-
 在不同的语境中，Spring 所代表的含义是不同的。下面我们就分别从“广义”和“狭义”两个角度，对 Spring 进行介绍。
 
-**广义的 Spring：Spring 技术栈**
-
+### 广义的 Spring：Spring 技术栈
 广义上的 Spring 泛指以 Spring Framework 为核心的 Spring 技术栈。
 
 经过十多年的发展，Spring 已经不再是一个单纯的应用框架，而是逐渐发展成为一个由多个不同子项目（模块）组成的成熟技术，例如 Spring Framework、Spring MVC、SpringBoot、Spring Cloud、Spring Data、Spring Security 等，其中 Spring Framework 是其他子项目的基础。
 
 这些子项目涵盖了从企业级应用开发到云计算等各方面的内容，能够帮助开发人员解决软件发展过程中不断产生的各种实际问题，给开发人员带来了更好的开发体验。
 
-**狭义的 Spring：Spring Framework**
-
+### 狭义的 Spring：Spring Framework
 狭义的 Spring 特指 Spring Framework，通常我们将它称为 Spring 框架。
 
 Spring 框架是一个分层的、面向切面的 Java 应用程序的一站式轻量级解决方案，它是 Spring 技术栈的核心和基础，是为了解决企业级应用开发的复杂性而创建的。
@@ -39,25 +35,17 @@ Spring 有两个最核心模块： IoC 和 AOP。
 **AOP**：Aspect Oriented Programming 的简写，译为“面向切面编程”。AOP 用来封装多个类的公共行为，将那些与业务无关，却为业务模块所共同调用的逻辑封装起来，减少系统的重复代码，降低模块间的耦合度。另外，AOP 还解决一些系统层面上的问题，比如日志、事务、权限等。
 
 
-
 ## 1.3、Spring Framework特点
-
 - 非侵入式：使用 Spring Framework 开发应用程序时，Spring 对应用程序本身的结构影响非常小。对领域模型可以做到零污染；对功能性组件也只需要使用几个简单的注解进行标记，完全不会破坏原有结构，反而能将组件结构进一步简化。这就使得基于 Spring Framework 开发应用程序时结构清晰、简洁优雅。
-
 - 控制反转：IoC——Inversion of Control，翻转资源获取方向。把自己创建资源、向环境索取资源变成环境将资源准备好，我们享受资源注入。
-
 - 面向切面编程：AOP——Aspect Oriented Programming，在不修改源代码的基础上增强代码功能。
 
 - 容器：Spring IoC 是一个容器，因为它包含并且管理组件对象的生命周期。组件享受到了容器化的管理，替程序员屏蔽了组件创建过程中的大量细节，极大的降低了使用门槛，大幅度提高了开发效率。
-
 - 组件化：Spring 实现了使用简单的组件配置组合成一个复杂的应用。在 Spring 中可以使用 XML 和 Java 注解组合这些对象。这使得我们可以基于一个个功能明确、边界清晰的组件有条不紊的搭建超大型复杂应用系统。
-
 - 一站式：在 IoC 和 AOP 的基础上可以整合各种企业应用的开源框架和优秀的第三方类库。而且 Spring 旗下的项目已经覆盖了广泛领域，很多方面的功能性需求可以在 Spring Framework 的基础上全部使用 Spring 来实现。
 
-  
 
 ## 1.4、Spring模块组成
-
 官网地址：https://spring.io/
 
 ![image-20221207142746771](image/README/1684165108020.png)
@@ -66,8 +54,7 @@ Spring 有两个最核心模块： IoC 和 AOP。
 
 上图中包含了 Spring 框架的所有模块，这些模块可以满足一切企业级应用开发的需求，在开发过程中可以根据需求有选择性地使用所需要的模块。下面分别对这些模块的作用进行简单介绍。
 
-**①Spring Core（核心容器）**
-
+### ①Spring Core（核心容器）
 spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念： Beans、BeanFactory、BeanDefinitions、ApplicationContext。
 
 - spring-core ：IOC和DI的基本实现
@@ -76,52 +63,42 @@ spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念�
 - spring-context：Spring context上下文，即IOC容器(AppliactionContext)
 - spring-expression：spring表达式语言
 
-**②Spring AOP**
-
+### ②Spring AOP
 - spring-aop：面向切面编程的应用模块，整合ASM，CGLib，JDK Proxy
 - spring-aspects：集成AspectJ，AOP应用框架
 - spring-instrument：动态Class Loading模块
 
-**③Spring Data Access**
-
+### ③Spring Data Access
 - spring-jdbc：spring对JDBC的封装，用于简化jdbc操作
 - spring-orm：java对象与数据库数据的映射框架
 - spring-oxm：对象与xml文件的映射框架
 - spring-jms： Spring对Java Message Service(java消息服务)的封装，用于服务之间相互通信
 - spring-tx：spring jdbc事务管理
 
-**④Spring Web**
-
+### ④Spring Web
 - spring-web：最基础的web支持，建立于spring-context之上，通过servlet或listener来初始化IOC容器
 - spring-webmvc：实现web mvc
 - spring-websocket：与前端的全双工通信协议
 - spring-webflux：Spring 5.0提供的，用于取代传统java servlet，非阻塞式Reactive Web框架，异步，非阻塞，事件驱动的服务
 
-**⑤Spring Message**
-
+### ⑤Spring Message
 - Spring-messaging：spring 4.0提供的，为Spring集成一些基础的报文传送服务
 
-**⑥Spring test**
-
+### ⑥Spring test
 - spring-test：集成测试支持，主要是对junit的封装
 
-  
 
 ## 1.5、Spring6特点
 
 ### 1.5.1、版本要求
-
-**（1）Spring6要求JDK最低版本是JDK17**
+**Spring6要求JDK最低版本是JDK17**
 
 ![image-20221201103138194](image/README/1684165108040.png)
 
 ### 1.5.2、本课程软件版本
-
-（1）IDEA开发工具：2022.1.2
-
-（2）JDK：Java17**（Spring6要求JDK最低版本是Java17）**
-
-（3）Spring：6.0.2
+1. IDEA开发工具：2022.1.2
+2. JDK：Java17 **（Spring6要求JDK最低版本是Java17）**
+3. Spring：6.0.2
 
 
 
@@ -135,7 +112,7 @@ spring core提供了IOC,DI,Bean配置装载创建的核心实现。核心概念�
 
 - Spring：6.0.2
 
-  
+
 
 ## 2.2、构建模块
 
@@ -200,7 +177,7 @@ https://spring.io/projects/spring-framework#learn
 package com.atguigu.spring6.bean;
 
 public class HelloWorld {
-    
+
     public void sayHello(){
         System.out.println("helloworld");
     }
@@ -227,7 +204,7 @@ public class HelloWorld {
         class：设置bean所对应类型的全类名
 	-->
     <bean id="helloWorld" class="com.atguigu.spring6.bean.HelloWorld"></bean>
-    
+
 </beans>
 ```
 
@@ -317,7 +294,7 @@ Map<String,BeanDefinition> , 其中 String是Key , 默认是类名首字母小�
 
 在项目开发中，日志十分的重要，不管是记录运行情况还是定位线上问题，都离不开对日志的分析。日志记录了系统行为的时间、地点、状态等相关信息，能够帮助我们了解并监控系统状态，在发生错误或者接近某种危险状态时能够及时提醒我们处理，同时在系统产生问题时，能够帮助我们快速的定位、诊断并解决问题。
 
-**Apache Log4j2**是一个开源的日志记录组件，使用非常的广泛。在工程中以易用方便代替了 System.out 等打印语句，它是JAVA下最流行的日志输入工具。 
+**Apache Log4j2**是一个开源的日志记录组件，使用非常的广泛。在工程中以易用方便代替了 System.out 等打印语句，它是JAVA下最流行的日志输入工具。
 
 **Log4j2主要由几个重要的组件构成：**
 
@@ -588,7 +565,7 @@ public class HelloWorldTest {
 
     @Test
     public void testHelloWorld(){
-        
+
     }
 }
 ```
@@ -856,7 +833,7 @@ public void testDIByConstructor(){
 
 ```java
 package com.atguigu.spring6.bean
-    
+
 public class Clazz {
 
     private Integer clazzId;
@@ -949,7 +926,7 @@ public void setClazz(Clazz clazz) {
 </bean>
 ```
 
-> 如果错把ref属性写成了value属性，会抛出异常： Caused by: java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'com.atguigu.spring6.bean.Clazz' for property 'clazz': no matching editors or conversion strategy found 
+> 如果错把ref属性写成了value属性，会抛出异常： Caused by: java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'com.atguigu.spring6.bean.Clazz' for property 'clazz': no matching editors or conversion strategy found
 >
 > 意思是不能把String类型转换成我们要的Clazz类型，说明我们使用value属性时，Spring只把这个属性看做一个普通的字符串，不会认为这是一个bean的id，更不会根据它去找到bean来赋值
 
@@ -1102,7 +1079,7 @@ public class Teacher {
     public Teacher() {
 
     }
-    
+
     @Override
     public String toString() {
         return "Teacher{" +
@@ -1580,18 +1557,18 @@ bean的后置处理器会在生命周期的初始化前后添加额外的操作�
 
 ```java
 package com.atguigu.spring6.process;
-    
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 public class MyBeanProcessor implements BeanPostProcessor {
-    
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("☆☆☆" + beanName + " = " + bean);
         return bean;
     }
-    
+
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("★★★" + beanName + " = " + bean);
@@ -2020,7 +1997,7 @@ Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML �
 ```xml
 <context:component-scan base-package="com.atguigu.spring6">
     <!-- context:exclude-filter标签：指定排除规则 -->
-    <!-- 
+    <!--
  		type：设置排除或包含的依据
 		type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
 		type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
@@ -2037,7 +2014,7 @@ Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML �
     <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
     <!-- use-default-filters属性：取值false表示关闭默认扫描规则 -->
     <!-- 此时必须设置use-default-filters="false"，因为默认规则即扫描指定包下所有类 -->
-    <!-- 
+    <!--
  		type：设置排除或包含的依据
 		type="annotation"，根据注解排除，expression中设置要排除的注解的全类名
 		type="assignable"，根据类型排除，expression中设置要排除的类型的全类名
@@ -2836,7 +2813,7 @@ public class TestCar {
 //        Constructor c1 = clazz.getConstructor(String.class, int.class, String.class);
 //        Car car1 = (Car)c1.newInstance("夏利", 10, "红色");
 //        System.out.println(car1);
-        
+
         //2 构造private
         Constructor c2 = clazz.getDeclaredConstructor(String.class, int.class, String.class);
         c2.setAccessible(true);
@@ -3052,7 +3029,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
      * @param basePackage
      */
     public AnnotationApplicationContext(String basePackage) {
-        
+
     }
 }
 ```
@@ -3158,7 +3135,7 @@ public class UserServiceImpl implements UserService
 
 ```java
 @Bean
-public class UserDaoImpl implements UserDao 
+public class UserDaoImpl implements UserDao
 ```
 
 **⑧测试Bean加载**
@@ -3255,11 +3232,11 @@ public class AnnotationApplicationContext implements ApplicationContext {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
+
         //依赖注入
         loadDi();
     }
-    
+
     private  void loadBean(File fileParent) {
         if (fileParent.isDirectory()) {
             File[] childrenFiles = fileParent.listFiles();
@@ -3346,15 +3323,15 @@ public class AnnotationApplicationContext implements ApplicationContext {
 
 ```java
 public interface Calculator {
-    
+
     int add(int i, int j);
-    
+
     int sub(int i, int j);
-    
+
     int mul(int i, int j);
-    
+
     int div(int i, int j);
-    
+
 }
 ```
 
@@ -3364,44 +3341,44 @@ public interface Calculator {
 
 ```java
 public class CalculatorImpl implements Calculator {
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         int result = i + j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int sub(int i, int j) {
-    
+
         int result = i - j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int mul(int i, int j) {
-    
+
         int result = i * j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int div(int i, int j) {
-    
+
         int result = i / j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
 }
@@ -3413,60 +3390,60 @@ public class CalculatorImpl implements Calculator {
 
 ```java
 public class CalculatorLogImpl implements Calculator {
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         System.out.println("[日志] add 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i + j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] add 方法结束了，结果是：" + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int sub(int i, int j) {
-    
+
         System.out.println("[日志] sub 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i - j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] sub 方法结束了，结果是：" + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int mul(int i, int j) {
-    
+
         System.out.println("[日志] mul 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i * j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] mul 方法结束了，结果是：" + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int div(int i, int j) {
-    
+
         System.out.println("[日志] div 方法开始了，参数是：" + i + "," + j);
-    
+
         int result = i / j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         System.out.println("[日志] div 方法结束了，结果是：" + result);
-    
+
         return result;
     }
 }
@@ -3524,25 +3501,25 @@ public class CalculatorLogImpl implements Calculator {
 
 ```java
 public class CalculatorStaticProxy implements Calculator {
-    
+
     // 将被代理的目标对象声明为成员变量
     private Calculator target;
-    
+
     public CalculatorStaticProxy(Calculator target) {
         this.target = target;
     }
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         // 附加功能由代理类中的代理方法来实现
         System.out.println("[日志] add 方法开始了，参数是：" + i + "," + j);
-    
+
         // 通过目标对象来实现核心业务逻辑
         int addResult = target.add(i, j);
-    
+
         System.out.println("[日志] add 方法结束了，结果是：" + addResult);
-    
+
         return addResult;
     }
 }
@@ -3696,7 +3673,7 @@ AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领�
 
 - 代码增强：把特定的功能封装到切面类中，看哪里有需要，就往上套，被**套用**了切面逻辑的方法就被切面给增强了。
 
-  
+
 
 ## 5.4、基于注解的AOP
 
@@ -3772,15 +3749,15 @@ AOP（Aspect Oriented Programming）是一种设计思想，是软件设计领�
 
 ```java
 public interface Calculator {
-    
+
     int add(int i, int j);
-    
+
     int sub(int i, int j);
-    
+
     int mul(int i, int j);
-    
+
     int div(int i, int j);
-    
+
 }
 ```
 
@@ -3789,44 +3766,44 @@ public interface Calculator {
 ```java
 @Component
 public class CalculatorImpl implements Calculator {
-    
+
     @Override
     public int add(int i, int j) {
-    
+
         int result = i + j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int sub(int i, int j) {
-    
+
         int result = i - j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int mul(int i, int j) {
-    
+
         int result = i * j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
-    
+
     @Override
     public int div(int i, int j) {
-    
+
         int result = i / j;
-    
+
         System.out.println("方法内部 result = " + result);
-    
+
         return result;
     }
 }
@@ -3842,7 +3819,7 @@ public class CalculatorImpl implements Calculator {
 // @Component注解保证这个切面类能够放入IOC容器
 @Component
 public class LogAspect {
-    
+
     @Before("execution(public int com.atguigu.aop.annotation.CalculatorImpl.*(..))")
     public void beforeMethod(JoinPoint joinPoint){
         String methodName = joinPoint.getSignature().getName();
@@ -3867,7 +3844,7 @@ public class LogAspect {
         String methodName = joinPoint.getSignature().getName();
         System.out.println("Logger-->异常通知，方法名："+methodName+"，异常："+ex);
     }
-    
+
     @Around("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
     public Object aroundMethod(ProceedingJoinPoint joinPoint){
         String methodName = joinPoint.getSignature().getName();
@@ -3886,7 +3863,7 @@ public class LogAspect {
         }
         return result;
     }
-    
+
 }
 ```
 
@@ -4126,7 +4103,7 @@ public Object aroundMethod(ProceedingJoinPoint joinPoint){
 <aop:config>
     <!--配置切面类-->
     <aop:aspect ref="loggerAspect">
-        <aop:pointcut id="pointCut" 
+        <aop:pointcut id="pointCut"
                    expression="execution(* com.atguigu.aop.xml.CalculatorImpl.*(..))"/>
         <aop:before method="beforeMethod" pointcut-ref="pointCut"></aop:before>
         <aop:after method="afterMethod" pointcut-ref="pointCut"></aop:after>
@@ -4421,7 +4398,7 @@ public class JDBCTemplateTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
 }
 ```
 
@@ -4434,7 +4411,7 @@ public void testUpdate(){
     //添加功能
 	String sql = "insert into t_emp values(null,?,?,?)";
 	int result = jdbcTemplate.update(sql, "张三", 23, "男");
-    
+
     //修改功能
 	//String sql = "update t_emp set name=? where id=?";
     //int result = jdbcTemplate.update(sql, "张三atguigu", 1);
@@ -4559,27 +4536,27 @@ public void selectCount(){
 
 ```java
 Connection conn = ...;
-    
+
 try {
-    
+
     // 开启事务：关闭事务的自动提交
     conn.setAutoCommit(false);
-    
+
     // 核心操作
-    
+
     // 提交事务
     conn.commit();
-    
+
 }catch(Exception e){
-    
+
     // 回滚事务
     conn.rollBack();
-    
+
 }finally{
-    
+
     // 释放数据库连接
     conn.close();
-    
+
 }
 ```
 
@@ -5161,7 +5138,7 @@ public class TxByAllAnnotationTest {
         <tx:method name="get*" read-only="true"/>
         <tx:method name="query*" read-only="true"/>
         <tx:method name="find*" read-only="true"/>
-    
+
         <!-- read-only属性：设置只读属性 -->
         <!-- rollback-for属性：设置回滚的异常 -->
         <!-- no-rollback-for属性：设置不回滚的异常 -->
@@ -5307,7 +5284,7 @@ public class UrlResourceDemo {
             throw new RuntimeException(e);
         }
     }
-    
+
     public static void main(String[] args) {
         //访问网络资源
         loadAndReadUrlResource("http://www.baidu.com");
@@ -5325,7 +5302,7 @@ public class UrlResourceDemo {
 public static void main(String[] args) {
     //1 访问网络资源
 	//loadAndReadUrlResource("http://www.atguigu.com");
-    
+
     //2 访问文件系统资源
     loadAndReadUrlResource("file:atguigu.txt");
 }
@@ -5618,16 +5595,16 @@ package com.atguigu.spring6.resouceloader;
 import org.springframework.core.io.Resource;
 
 public class ResourceBean {
-    
+
     private Resource res;
-    
+
     public void setRes(Resource res) {
         this.res = res;
     }
     public Resource getRes() {
         return res;
     }
-    
+
     public void parse(){
         System.out.println(res.getFilename());
         System.out.println(res.getDescription());
@@ -5746,7 +5723,7 @@ System.out.println(ctx);
 
 如果不是采用classpath * :前缀，而是改为使用classpath:前缀，Spring则只加载第一个符合条件的XML文件
 
-**注意 ：** 
+**注意 ：**
 
 classpath * : 前缀仅对ApplicationContext有效。实际情况是，创建ApplicationContext时，分别访问多个配置文件(通过ClassLoader的getResource方法实现)。因此，classpath * :前缀不可用于Resource。
 
@@ -5914,9 +5891,9 @@ import java.util.Locale;
 public class Demo2 {
 
     public static void main(String[] args) {
-        
+
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        
+
         //传递动态参数，使用数组形式对应{0} {1}顺序
         Object[] objs = new Object[]{"atguigu",new Date().toString()};
 
@@ -6058,7 +6035,7 @@ public class TestMethod1 {
         Person person = new Person();
         person.setName("lucy");
         person.setAge(-1);
-        
+
         // 创建Person对应的DataBinder
         DataBinder binder = new DataBinder(person);
 
@@ -6312,7 +6289,7 @@ import org.springframework.validation.annotation.Validated;
 @Service
 @Validated
 public class MyService {
-    
+
     public String testParams(@NotNull @Valid User user) {
         return user.toString();
     }
@@ -6429,7 +6406,7 @@ JIT和AOT 这个名词是指两种不同的编译方式，这两种编译方式�
 
 **（2）AOT，Ahead Of Time，指运行前编译，预先编译。**
 
-AOT 编译能直接将源代码转化为机器码，内存占用低，启动速度快，可以无需 runtime 运行，直接将 runtime 静态链接至最终的程序中，但是无运行时性能加成，不能根据程序运行情况做进一步的优化，AOT 缺点就是在程序运行前编译会使程序安装的时间增加。                                                           
+AOT 编译能直接将源代码转化为机器码，内存占用低，启动速度快，可以无需 runtime 运行，直接将 runtime 静态链接至最终的程序中，但是无运行时性能加成，不能根据程序运行情况做进一步的优化，AOT 缺点就是在程序运行前编译会使程序安装的时间增加。
 
 **简单来讲：**JIT即时编译指的是在程序的运行过程中，将字节码转换为可在硬件上直接运行的机器码，并部署至托管环境中的过程。而 AOT 编译指的则是，在程序运行之前，便将字节码转换为机器码的过程。
 
