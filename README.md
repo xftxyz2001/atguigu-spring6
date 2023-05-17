@@ -274,7 +274,7 @@ BeanDefinition，存的是类的定义(描述信息)，我们通常叫BeanDefini
    - WARN：警告，输出警告的信息
    - ERROR：错误，输出错误信息
    - FATAL：严重错误
-   
+
    这些级别分别用来指定这条日志信息的重要程度；级别高的会自动屏蔽级别低的日志，也就是说，设置了WARN的日志，则INFO、DEBUG的日志级别的日志不会显示
 2. **日志信息的输出目的地**，日志信息的输出目的地指定了日志将打印到**控制台**还是**文件中**；
 3. **日志信息的输出格式**，而输出格式则控制了日志信息的显示内容。
@@ -1586,13 +1586,11 @@ public void testAutoWireByXML() {
 
 
 ## 3.3、基于注解管理Bean（☆）
-
 从 Java 5 开始，Java 增加了对注解（Annotation）的支持，它是代码中的一种特殊标记，可以在编译、类加载和运行时被读取，执行相应的处理。开发人员可以通过注解在不改变原有代码和逻辑的情况下，在源代码中嵌入补充信息。
 
 Spring 从 2.5 版本开始提供了对注解技术的全面支持，我们可以使用注解来实现自动装配，简化 Spring 的 XML 配置。
 
 Spring 通过注解实现自动装配的步骤如下：
-
 1. 引入依赖
 2. 开启组件扫描
 3. 使用注解定义 Bean
@@ -1600,16 +1598,13 @@ Spring 通过注解实现自动装配的步骤如下：
 
 ### 3.3.1、搭建子模块spring6-ioc-annotation
 
-**①搭建模块**
-
+#### ①搭建模块
 搭建方式如：spring6-ioc-xml
 
-**②引入配置文件**
-
+#### ②引入配置文件
 引入spring-ioc-xml模块日志log4j2.xml
 
-**③添加依赖**
-
+#### ③添加依赖
 ```xml
 <dependencies>
     <!--spring context依赖-->
@@ -1641,8 +1636,7 @@ Spring 通过注解实现自动装配的步骤如下：
 ```
 
 ### 3.3.2、开启组件扫描
-
-Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML 配置中，通过 <context:component-scan> 元素开启 Spring Beans的自动扫描功能。开启此功能后，Spring 会自动从扫描指定的包（base-package 属性设置）及其子包下的所有类，如果类上使用了 @Component 注解，就将该类装配到容器中。
+Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML 配置中，通过 `<context:component-scan>` 元素开启 Spring Beans的自动扫描功能。开启此功能后，Spring 会自动从扫描指定的包（base-package 属性设置）及其子包下的所有类，如果类上使用了 @Component 注解，就将该类装配到容器中。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -1658,17 +1652,15 @@ Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML �
 </beans>
 ```
 
-注意：在使用 <context:component-scan> 元素开启自动扫描功能前，首先需要在 XML 配置的一级标签 <beans> 中添加 context 相关的约束。
+注意：在使用 `<context:component-scan>` 元素开启自动扫描功能前，首先需要在 XML 配置的一级标签 `<beans>` 中添加 context 相关的约束。
 
-**情况一：最基本的扫描方式**
-
+#### 情况一：最基本的扫描方式
 ```xml
 <context:component-scan base-package="com.atguigu.spring6">
 </context:component-scan>
 ```
 
-**情况二：指定要排除的组件**
-
+#### 情况二：指定要排除的组件
 ```xml
 <context:component-scan base-package="com.atguigu.spring6">
     <!-- context:exclude-filter标签：指定排除规则 -->
@@ -1682,8 +1674,7 @@ Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML �
 </context:component-scan>
 ```
 
-**情况三：仅扫描指定组件**
-
+#### 情况三：仅扫描指定组件
 ```xml
 <context:component-scan base-package="com.atguigu" use-default-filters="false">
     <!-- context:include-filter标签：指定在原有扫描规则的基础上追加的规则 -->
@@ -1699,10 +1690,7 @@ Spring 默认不使用注解装配 Bean，因此我们需要在 Spring 的 XML �
 </context:component-scan>
 ```
 
-
-
 ### 3.3.3、使用注解定义 Bean
-
 Spring 提供了以下多个注解，这些注解可以直接标注在 Java 类上，将它们定义成 Spring Bean。
 
 | 注解        | 说明                                                                                                                                                                                     |
@@ -1712,47 +1700,22 @@ Spring 提供了以下多个注解，这些注解可以直接标注在 Java 类�
 | @Service    | 该注解通常作用在业务层（Service 层），用于将业务层的类标识为 Spring 中的 Bean，其功能与 @Component 相同。                                                                                |
 | @Controller | 该注解通常作用在控制层（如SpringMVC 的 Controller），用于将控制层的类标识为 Spring 中的 Bean，其功能与 @Component 相同。                                                                 |
 
-
-
 ### 3.3.4、实验一：@Autowired注入
-
 单独使用@Autowired注解，**默认根据类型装配**。【默认是byType】
 
-查看源码：
-
-```java
-package org.springframework.beans.factory.annotation;
-
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-@Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-public @interface Autowired {
-    boolean required() default true;
-}
-```
+[查看源码 Autowired.java](./source/Autowired.java)
 
 源码中有两处需要注意：
-
 - 第一处：该注解可以标注在哪里？
-
-- - 构造方法上
+  - 构造方法上
   - 方法上
   - 形参上
   - 属性上
   - 注解上
-
 - 第二处：该注解有一个required属性，默认值是true，表示在注入的时候要求被注入的Bean必须是存在的，如果不存在则报错。如果required属性设置为false，表示注入的Bean存在或者不存在都没关系，存在的话就注入，不存在的话，也不报错。
 
 #### ①场景一：属性注入
-
 创建UserDao接口
-
 ```java
 package com.atguigu.spring6.dao;
 
@@ -1763,7 +1726,6 @@ public interface UserDao {
 ```
 
 创建UserDaoImpl实现
-
 ```java
 package com.atguigu.spring6.dao.impl;
 
@@ -1781,7 +1743,6 @@ public class UserDaoImpl implements UserDao {
 ```
 
 创建UserService接口
-
 ```java
 package com.atguigu.spring6.service;
 
@@ -1792,7 +1753,6 @@ public interface UserService {
 ```
 
 创建UserServiceImpl实现类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -1816,7 +1776,6 @@ public class UserServiceImpl implements UserService {
 ```
 
 创建UserController类
-
 ```java
 package com.atguigu.spring6.controller;
 
@@ -1839,7 +1798,6 @@ public class UserController {
 ```
 
 **测试一**
-
 ```java
 package com.atguigu.spring6.bean;
 
@@ -1867,15 +1825,12 @@ public class UserTest {
 ```
 
 测试结果：
-
 ![image-20221101153556681](image/README/1684165108170.png)
 
 以上构造方法和setter方法都没有提供，经过测试，仍然可以注入成功。
 
-####  ②场景二：set注入
-
+#### ②场景二：set注入
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -1903,7 +1858,6 @@ public class UserServiceImpl implements UserService {
 ```
 
 修改UserController类
-
 ```java
 package com.atguigu.spring6.controller;
 
@@ -1932,9 +1886,7 @@ public class UserController {
 测试：成功调用
 
 #### ③场景三：构造方法注入
-
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -1962,7 +1914,6 @@ public class UserServiceImpl implements UserService {
 ```
 
 修改UserController类
-
 ```java
 package com.atguigu.spring6.controller;
 
@@ -1991,9 +1942,7 @@ public class UserController {
 测试：成功调用
 
 #### ④场景四：形参上注入
-
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -2020,7 +1969,6 @@ public class UserServiceImpl implements UserService {
 ```
 
 修改UserController类
-
 ```java
 package com.atguigu.spring6.controller;
 
@@ -2048,9 +1996,7 @@ public class UserController {
 测试：成功调用
 
 #### ⑤场景五：只有一个构造函数，无注解
-
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -2085,9 +2031,7 @@ public class UserServiceImpl implements UserService {
 说明：有多个构造方法时呢？大家可以测试（再添加一个无参构造函数），测试报错
 
 #### ⑥场景六：@Autowired注解和@Qualifier注解联合
-
 添加dao层实现
-
 ```java
 package com.atguigu.spring6.dao.impl;
 
@@ -2111,7 +2055,6 @@ public class UserDaoRedisImpl implements UserDao {
 怎么解决这个问题呢？**当然要byName，根据名称进行装配了。**
 
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -2136,17 +2079,12 @@ public class UserServiceImpl implements UserService {
 ```
 
 **总结**
-
 - @Autowired注解可以出现在：属性上、构造方法上、构造方法的参数上、setter方法上。
 - 当带参数的构造方法只有一个，@Autowired注解可以省略。（）
 - @Autowired注解默认根据类型注入。如果要根据名称注入的话，需要配合@Qualifier注解一起使用。
 
-
-
 ### 3.3.5、实验二：@Resource注入
-
 @Resource注解也可以完成属性注入。那它和@Autowired注解有什么区别？
-
 - @Resource注解是JDK扩展包中的，也就是说属于JDK的一部分。所以该注解是标准注解，更加具有通用性。(JSR-250标准中制定的注解类型。JSR是Java规范提案。)
 - @Autowired注解是Spring框架自己的。
 - **@Resource注解默认根据名称装配byName，未指定name时，使用属性名作为name。通过name找不到的话会自动启动通过类型byType装配。**
@@ -2155,7 +2093,6 @@ public class UserServiceImpl implements UserService {
 - @Autowired注解用在属性上、setter方法上、构造方法上、构造方法参数上。
 
 @Resource注解属于JDK扩展包，所以不在JDK当中，需要额外引入以下依赖：【**如果是JDK8的话不需要额外引入依赖。高于JDK11或低于JDK8需要引入以下依赖。**】
-
 ```xml
 <dependency>
     <groupId>jakarta.annotation</groupId>
@@ -2164,49 +2101,10 @@ public class UserServiceImpl implements UserService {
 </dependency>
 ```
 
-源码：
-
-```java
-package jakarta.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Repeatable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-@Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@Repeatable(Resources.class)
-public @interface Resource {
-    String name() default "";
-
-    String lookup() default "";
-
-    Class<?> type() default Object.class;
-
-    Resource.AuthenticationType authenticationType() default Resource.AuthenticationType.CONTAINER;
-
-    boolean shareable() default true;
-
-    String mappedName() default "";
-
-    String description() default "";
-
-    public static enum AuthenticationType {
-        CONTAINER,
-        APPLICATION;
-
-        private AuthenticationType() {
-        }
-    }
-}
-```
+[查看源码 Resource.java](./source/Resource.java)
 
 #### ①场景一：根据name注入
-
 修改UserDaoImpl类
-
 ```java
 package com.atguigu.spring6.dao.impl;
 
@@ -2224,7 +2122,6 @@ public class UserDaoImpl implements UserDao {
 ```
 
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -2252,9 +2149,7 @@ public class UserServiceImpl implements UserService {
 测试通过
 
 #### ②场景二：name未知注入
-
 修改UserDaoImpl类
-
 ```java
 package com.atguigu.spring6.dao.impl;
 
@@ -2272,7 +2167,6 @@ public class UserDaoImpl implements UserDao {
 ```
 
 修改UserServiceImpl类
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -2302,9 +2196,7 @@ public class UserServiceImpl implements UserService {
 当@Resource注解使用时没有指定name的时候，还是根据name进行查找，这个name是属性名。
 
 #### ③场景三 其他情况
-
 修改UserServiceImpl类，userDao1属性名不存在
-
 ```java
 package com.atguigu.spring6.service.impl;
 
@@ -2336,15 +2228,10 @@ public class UserServiceImpl implements UserService {
 @Resource的set注入可以自行测试
 
 **总结：**
-
 @Resource注解：默认byName注入，没有指定name时把属性名当做name，根据name找不到时，才会byType注入。byType注入时，某种类型的Bean只能有一个
 
-
-
 ### 3.3.6、Spring全注解开发
-
 全注解开发就是不再使用spring配置文件了，写一个配置类来代替配置文件。
-
 ```java
 package com.atguigu.spring6.config;
 
@@ -2359,7 +2246,6 @@ public class Spring6Config {
 ```
 
 测试类
-
 ```java
 @Test
 public void testAllAnnotation(){
