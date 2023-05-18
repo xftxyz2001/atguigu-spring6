@@ -255,7 +255,7 @@ private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHash
 ```
 
 Spring容器加载到Bean类时，会把这个类的描述信息，以包名加类名的方式存到beanDefinitionMap中，
-`Map<String,BeanDefinition>` ，其中String是key，默认是类名首字母小写，
+`Map<String, BeanDefinition>` ，其中String是key，默认是类名首字母小写，
 BeanDefinition，存的是类的定义(描述信息)，我们通常叫BeanDefinition接口为：bean的定义对象。
 
 
@@ -1347,11 +1347,11 @@ public class User {
         this.age = age;
     }
 
-    public void initMethod(){
+    public void initMethod() {
         System.out.println("生命周期：3、初始化");
     }
 
-    public void destroyMethod(){
+    public void destroyMethod() {
         System.out.println("生命周期：5、销毁");
     }
 
@@ -1482,7 +1482,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    public void saveUser(){
+    public void saveUser() {
         userService.saveUser();
     }
 
@@ -1813,7 +1813,7 @@ public class UserTest {
     private Logger logger = LoggerFactory.getLogger(UserTest.class);
 
     @Test
-    public void testAnnotation(){
+    public void testAnnotation() {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
         UserController userController = context.getBean("userController", UserController.class);
         userController.out();
@@ -2239,7 +2239,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@ComponentScan({"com.atguigu.spring6.controller", "com.atguigu.spring6.service","com.atguigu.spring6.dao"})
+//@ComponentScan({"com.atguigu.spring6.controller", "com.atguigu.spring6.service", "com.atguigu.spring6.dao"})
 @ComponentScan("com.atguigu.spring6")
 public class Spring6Config {
 }
@@ -2248,7 +2248,7 @@ public class Spring6Config {
 测试类
 ```java
 @Test
-public void testAllAnnotation(){
+public void testAllAnnotation() {
     ApplicationContext context = new AnnotationConfigApplicationContext(Spring6Config.class);
     UserController userController = context.getBean("userController", UserController.class);
     userController.out();
@@ -2259,17 +2259,14 @@ public void testAllAnnotation(){
 
 
 # 4、原理-手写IoC
-
 我们都知道，Spring框架的IOC是基于Java反射机制实现的，下面我们先回顾一下java反射。
 
 ## 4.1、回顾Java反射
-
 `Java`反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能够调用它的任意方法和属性；这种动态获取信息以及动态调用对象方法的功能称为`Java`语言的反射机制。简单来说，反射机制指的是程序在运行时能够获取自身的信息。
 
-要想解剖一个类，必须先要**获取到该类的Class对象**。而剖析一个类或用反射解决具体的问题就是使用相关API**（1）java.lang.Class（2）java.lang.reflect**，所以，**Class对象是反射的根源**。
+要想解剖一个类，必须先要**获取到该类的Class对象**。而剖析一个类或用反射解决具体的问题就是使用相关API **（1）java.lang.Class（2）java.lang.reflect**，所以，**Class对象是反射的根源**。
 
-**自定义类**
-
+### 自定义类
 ```java
 package com.atguigu.reflect;
 
@@ -2327,8 +2324,7 @@ public class Car {
 }
 ```
 
-**编写测试类**
-
+### 编写测试类
 ```java
 package com.atguigu.reflect;
 
@@ -2362,7 +2358,7 @@ public class TestCar {
         Class clazz = Car.class;
         //获取所有构造
         // getConstructors()获取所有public的构造方法
-//        Constructor[] constructors = clazz.getConstructors();
+        // Constructor[] constructors = clazz.getConstructors();
         // getDeclaredConstructors()获取所有的构造方法public  private
         Constructor[] constructors = clazz.getDeclaredConstructors();
         for (Constructor c:constructors) {
@@ -2371,9 +2367,9 @@ public class TestCar {
 
         //指定有参数构造创建对象
         //1 构造public
-//        Constructor c1 = clazz.getConstructor(String.class, int.class, String.class);
-//        Car car1 = (Car)c1.newInstance("夏利", 10, "红色");
-//        System.out.println(car1);
+        // Constructor c1 = clazz.getConstructor(String.class, int.class, String.class);
+        // Car car1 = (Car)c1.newInstance("夏利", 10, "红色");
+        // System.out.println(car1);
 
         //2 构造private
         Constructor c2 = clazz.getDeclaredConstructor(String.class, int.class, String.class);
@@ -2388,14 +2384,14 @@ public class TestCar {
         Class clazz = Car.class;
         Car car = (Car)clazz.getDeclaredConstructor().newInstance();
         //获取所有public属性
-        //Field[] fields = clazz.getFields();
+        // Field[] fields = clazz.getFields();
         //获取所有属性（包含私有属性）
         Field[] fields = clazz.getDeclaredFields();
         for (Field field:fields) {
             if(field.getName().equals("name")) {
                 //设置允许访问
                 field.setAccessible(true);
-                field.set(car,"五菱宏光");
+                field.set(car, "五菱宏光");
                 System.out.println(car);
             }
             System.out.println(field.getName());
@@ -2405,12 +2401,12 @@ public class TestCar {
     //4、获取方法
     @Test
     public void test04() throws Exception {
-        Car car = new Car("奔驰",10,"黑色");
+        Car car = new Car("奔驰", 10, "黑色");
         Class clazz = car.getClass();
         //1 public方法
         Method[] methods = clazz.getMethods();
         for (Method m1:methods) {
-            //System.out.println(m1.getName());
+            // System.out.println(m1.getName());
             //执行方法 toString
             if(m1.getName().equals("toString")) {
                 String invoke = (String)m1.invoke(car);
@@ -2628,7 +2624,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
             Enumeration<URL> dirs =Thread.currentThread().getContextClassLoader().getResources(packageDirName);
             while (dirs.hasMoreElements()) {
                 URL url = dirs.nextElement();
-                String filePath = URLDecoder.decode(url.getFile(),"utf-8");
+                String filePath = URLDecoder.decode(url.getFile(), "utf-8");
                 rootPath = filePath.substring(0, filePath.length()-packageDirName.length());
                 loadBean(new File(filePath));
             }
@@ -2641,15 +2637,15 @@ public class AnnotationApplicationContext implements ApplicationContext {
     private  void loadBean(File fileParent) {
         if (fileParent.isDirectory()) {
             File[] childrenFiles = fileParent.listFiles();
-            if(childrenFiles == null || childrenFiles.length == 0){
+            if(childrenFiles == null || childrenFiles.length == 0) {
                 return;
             }
             for (File child : childrenFiles) {
                 if (child.isDirectory()) {
-                    //如果是个文件夹就继续调用该方法,使用了递归
+                    //如果是个文件夹就继续调用该方法，使用了递归
                     loadBean(child);
                 } else {
-                    //通过文件路径转变成全类名,第一步把绝对路径部分去掉
+                    //通过文件路径转变成全类名，第一步把绝对路径部分去掉
                     String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
                     //选中class文件
                     if (pathWithClass.contains(".class")) {
@@ -2659,18 +2655,18 @@ public class AnnotationApplicationContext implements ApplicationContext {
                         try {
                             Class<?> aClass = Class.forName(fullName);
                             //把非接口的类实例化放在map中
-                            if(!aClass.isInterface()){
+                            if(!aClass.isInterface()) {
                                 Bean annotation = aClass.getAnnotation(Bean.class);
-                                if(annotation != null){
+                                if(annotation != null) {
                                     Object instance = aClass.newInstance();
                                     //判断一下有没有接口
                                     if(aClass.getInterfaces().length > 0) {
                                         //如果有接口把接口的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getInterfaces()[0] +"】,实例对象是：" + instance.getClass().getName());
+                                        System.out.println("正在加载【"+ aClass.getInterfaces()[0] +"】，实例对象是：" + instance.getClass().getName());
                                         beanFactory.put(aClass.getInterfaces()[0], instance);
                                     }else{
                                         //如果有接口把自己的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getName() +"】,实例对象是：" + instance.getClass().getName());
+                                        System.out.println("正在加载【"+ aClass.getName() +"】，实例对象是：" + instance.getClass().getName());
                                         beanFactory.put(aClass, instance);
                                     }
                                 }
@@ -2785,7 +2781,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
             Enumeration<URL> dirs =Thread.currentThread().getContextClassLoader().getResources(packageDirName);
             while (dirs.hasMoreElements()) {
                 URL url = dirs.nextElement();
-                String filePath = URLDecoder.decode(url.getFile(),"utf-8");
+                String filePath = URLDecoder.decode(url.getFile(), "utf-8");
                 rootPath = filePath.substring(0, filePath.length()-packageDirName.length());
                 loadBean(new File(filePath));
             }
@@ -2801,15 +2797,15 @@ public class AnnotationApplicationContext implements ApplicationContext {
     private  void loadBean(File fileParent) {
         if (fileParent.isDirectory()) {
             File[] childrenFiles = fileParent.listFiles();
-            if(childrenFiles == null || childrenFiles.length == 0){
+            if(childrenFiles == null || childrenFiles.length == 0) {
                 return;
             }
             for (File child : childrenFiles) {
                 if (child.isDirectory()) {
-                    //如果是个文件夹就继续调用该方法,使用了递归
+                    //如果是个文件夹就继续调用该方法，使用了递归
                     loadBean(child);
                 } else {
-                    //通过文件路径转变成全类名,第一步把绝对路径部分去掉
+                    //通过文件路径转变成全类名，第一步把绝对路径部分去掉
                     String pathWithClass = child.getAbsolutePath().substring(rootPath.length() - 1);
                     //选中class文件
                     if (pathWithClass.contains(".class")) {
@@ -2819,18 +2815,18 @@ public class AnnotationApplicationContext implements ApplicationContext {
                         try {
                             Class<?> aClass = Class.forName(fullName);
                             //把非接口的类实例化放在map中
-                            if(!aClass.isInterface()){
+                            if(!aClass.isInterface()) {
                                 Bean annotation = aClass.getAnnotation(Bean.class);
-                                if(annotation != null){
+                                if(annotation != null) {
                                     Object instance = aClass.newInstance();
                                     //判断一下有没有接口
                                     if(aClass.getInterfaces().length > 0) {
                                         //如果有接口把接口的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getInterfaces()[0] +"】,实例对象是：" + instance.getClass().getName());
+                                        System.out.println("正在加载【"+ aClass.getInterfaces()[0] +"】，实例对象是：" + instance.getClass().getName());
                                         beanFactory.put(aClass.getInterfaces()[0], instance);
                                     }else{
                                         //如果有接口把自己的class当成key，实例对象当成value
-                                        System.out.println("正在加载【"+ aClass.getName() +"】,实例对象是：" + instance.getClass().getName());
+                                        System.out.println("正在加载【"+ aClass.getName() +"】，实例对象是：" + instance.getClass().getName());
                                         beanFactory.put(aClass, instance);
                                     }
                                 }
@@ -2845,18 +2841,18 @@ public class AnnotationApplicationContext implements ApplicationContext {
     }
 
     private void loadDi() {
-        for(Map.Entry<Class,Object> entry : beanFactory.entrySet()){
+        for(Map.Entry<Class, Object> entry : beanFactory.entrySet()) {
             //就是咱们放在容器的对象
             Object obj = entry.getValue();
             Class<?> aClass = obj.getClass();
             Field[] declaredFields = aClass.getDeclaredFields();
-            for (Field field : declaredFields){
+            for (Field field : declaredFields) {
                 Di annotation = field.getAnnotation(Di.class);
-                if( annotation != null ){
+                if( annotation != null ) {
                     field.setAccessible(true);
                     try {
                         System.out.println("正在给【"+obj.getClass().getName()+"】属性【" + field.getName() + "】注入值【"+ beanFactory.get(field.getType()).getClass().getName() +"】");
-                        field.set(obj,beanFactory.get(field.getType()));
+                        field.set(obj, beanFactory.get(field.getType()));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
@@ -2955,7 +2951,7 @@ public class CalculatorLogImpl implements Calculator {
     @Override
     public int add(int i, int j) {
 
-        System.out.println("[日志] add 方法开始了，参数是：" + i + "," + j);
+        System.out.println("[日志] add 方法开始了，参数是：" + i + ", " + j);
 
         int result = i + j;
 
@@ -2969,7 +2965,7 @@ public class CalculatorLogImpl implements Calculator {
     @Override
     public int sub(int i, int j) {
 
-        System.out.println("[日志] sub 方法开始了，参数是：" + i + "," + j);
+        System.out.println("[日志] sub 方法开始了，参数是：" + i + ", " + j);
 
         int result = i - j;
 
@@ -2983,7 +2979,7 @@ public class CalculatorLogImpl implements Calculator {
     @Override
     public int mul(int i, int j) {
 
-        System.out.println("[日志] mul 方法开始了，参数是：" + i + "," + j);
+        System.out.println("[日志] mul 方法开始了，参数是：" + i + ", " + j);
 
         int result = i * j;
 
@@ -2997,7 +2993,7 @@ public class CalculatorLogImpl implements Calculator {
     @Override
     public int div(int i, int j) {
 
-        System.out.println("[日志] div 方法开始了，参数是：" + i + "," + j);
+        System.out.println("[日志] div 方法开始了，参数是：" + i + ", " + j);
 
         int result = i / j;
 
@@ -3074,7 +3070,7 @@ public class CalculatorStaticProxy implements Calculator {
     public int add(int i, int j) {
 
         // 附加功能由代理类中的代理方法来实现
-        System.out.println("[日志] add 方法开始了，参数是：" + i + "," + j);
+        System.out.println("[日志] add 方法开始了，参数是：" + i + ", " + j);
 
         // 通过目标对象来实现核心业务逻辑
         int addResult = target.add(i, j);
@@ -3107,7 +3103,7 @@ public class ProxyFactory {
         this.target = target;
     }
 
-    public Object getProxy(){
+    public Object getProxy() {
 
         /**
          * newProxyInstance()：创建一个代理实例
@@ -3152,11 +3148,11 @@ public class ProxyFactory {
 
 ```java
 @Test
-public void testDynamicProxy(){
+public void testDynamicProxy() {
     ProxyFactory factory = new ProxyFactory(new CalculatorLogImpl());
     Calculator proxy = (Calculator) factory.getProxy();
-    proxy.div(1,0);
-    //proxy.div(1,1);
+    proxy.div(1, 0);
+    //proxy.div(1, 1);
 }
 ```
 
@@ -3382,32 +3378,32 @@ public class CalculatorImpl implements Calculator {
 public class LogAspect {
 
     @Before("execution(public int com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-    public void beforeMethod(JoinPoint joinPoint){
+    public void beforeMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
         System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
     }
 
     @After("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-    public void afterMethod(JoinPoint joinPoint){
+    public void afterMethod(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         System.out.println("Logger-->后置通知，方法名："+methodName);
     }
 
     @AfterReturning(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", returning = "result")
-    public void afterReturningMethod(JoinPoint joinPoint, Object result){
+    public void afterReturningMethod(JoinPoint joinPoint, Object result) {
         String methodName = joinPoint.getSignature().getName();
         System.out.println("Logger-->返回通知，方法名："+methodName+"，结果："+result);
     }
 
     @AfterThrowing(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", throwing = "ex")
-    public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex){
+    public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex) {
         String methodName = joinPoint.getSignature().getName();
         System.out.println("Logger-->异常通知，方法名："+methodName+"，异常："+ex);
     }
 
     @Around("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-    public Object aroundMethod(ProceedingJoinPoint joinPoint){
+    public Object aroundMethod(ProceedingJoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         String args = Arrays.toString(joinPoint.getArgs());
         Object result = null;
@@ -3462,7 +3458,7 @@ public class CalculatorTest {
     private Logger logger = LoggerFactory.getLogger(CalculatorTest.class);
 
     @Test
-    public void testAdd(){
+    public void testAdd() {
         ApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         Calculator calculator = ac.getBean( Calculator.class);
         int add = calculator.add(1, 1);
@@ -3522,7 +3518,7 @@ public class CalculatorTest {
   - 例如：*Operation匹配所有方法名以Operation结尾的方法
 
 - 在方法参数列表部分，使用(..)表示参数列表任意
-- 在方法参数列表部分，使用(int,..)表示参数列表以一个int类型的参数开头
+- 在方法参数列表部分，使用(int, ..)表示参数列表以一个int类型的参数开头
 - 在方法参数列表部分，基本数据类型和对应的包装类型是不一样的
   - 切入点表达式中使用 int 和实际方法中 Integer 是不匹配的
 - 在方法返回值部分，如果想要明确指定一个返回值类型，那么必须同时写明权限修饰符
@@ -3539,14 +3535,14 @@ public class CalculatorTest {
 
 ```java
 @Pointcut("execution(* com.atguigu.aop.annotation.*.*(..))")
-public void pointCut(){}
+public void pointCut() {}
 ```
 
 **②在同一个切面中使用**
 
 ```java
 @Before("pointCut()")
-public void beforeMethod(JoinPoint joinPoint){
+public void beforeMethod(JoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
     System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
@@ -3557,7 +3553,7 @@ public void beforeMethod(JoinPoint joinPoint){
 
 ```java
 @Before("com.atguigu.aop.CommonPointCut.pointCut()")
-public void beforeMethod(JoinPoint joinPoint){
+public void beforeMethod(JoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
     System.out.println("Logger-->前置通知，方法名："+methodName+"，参数："+args);
@@ -3574,7 +3570,7 @@ public void beforeMethod(JoinPoint joinPoint){
 
 ```java
 @Before("execution(public int com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-public void beforeMethod(JoinPoint joinPoint){
+public void beforeMethod(JoinPoint joinPoint) {
     //获取连接点的签名信息
     String methodName = joinPoint.getSignature().getName();
     //获取目标方法到的实参信息
@@ -3589,7 +3585,7 @@ public void beforeMethod(JoinPoint joinPoint){
 
 ```java
 @AfterReturning(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", returning = "result")
-public void afterReturningMethod(JoinPoint joinPoint, Object result){
+public void afterReturningMethod(JoinPoint joinPoint, Object result) {
     String methodName = joinPoint.getSignature().getName();
     System.out.println("Logger-->返回通知，方法名："+methodName+"，结果："+result);
 }
@@ -3601,7 +3597,7 @@ public void afterReturningMethod(JoinPoint joinPoint, Object result){
 
 ```java
 @AfterThrowing(value = "execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))", throwing = "ex")
-public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex){
+public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex) {
     String methodName = joinPoint.getSignature().getName();
     System.out.println("Logger-->异常通知，方法名："+methodName+"，异常："+ex);
 }
@@ -3613,7 +3609,7 @@ public void afterThrowingMethod(JoinPoint joinPoint, Throwable ex){
 
 ```java
 @Around("execution(* com.atguigu.aop.annotation.CalculatorImpl.*(..))")
-public Object aroundMethod(ProceedingJoinPoint joinPoint){
+public Object aroundMethod(ProceedingJoinPoint joinPoint) {
     String methodName = joinPoint.getSignature().getName();
     String args = Arrays.toString(joinPoint.getArgs());
     Object result = null;
@@ -3790,7 +3786,7 @@ public class SpringJUnit5Test {
     private User user;
 
     @Test
-    public void testUser(){
+    public void testUser() {
         System.out.println(user);
     }
 }
@@ -3831,7 +3827,7 @@ public class SpringJUnit4Test {
     private User user;
 
     @Test
-    public void testUser(){
+    public void testUser() {
         System.out.println(user);
     }
 }
@@ -3968,7 +3964,7 @@ public class JDBCTemplateTest {
 ```java
 @Test
 //测试增删改功能
-public void testUpdate(){
+public void testUpdate() {
     //添加功能
     String sql = "insert into t_emp values(null,?,?,?)";
     int result = jdbcTemplate.update(sql, "张三", 23, "男");
@@ -4028,7 +4024,7 @@ public void testSelectObject() {
     //写法二
     String sql = "select * from t_emp where id=?";
     Emp emp = jdbcTemplate.queryForObject(sql,
-                  new BeanPropertyRowMapper<>(Emp.class),1);
+                  new BeanPropertyRowMapper<>(Emp.class), 1);
     System.out.println(emp);
 }
 ```
@@ -4038,7 +4034,7 @@ public void testSelectObject() {
 ```java
 @Test
 //查询多条数据为一个list集合
-public void testSelectList(){
+public void testSelectList() {
     String sql = "select * from t_emp";
     List<Emp> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Emp.class));
     System.out.println(list);
@@ -4050,7 +4046,7 @@ public void testSelectList(){
 ```java
 @Test
 //查询单行单列的值
-public void selectCount(){
+public void selectCount() {
     String sql = "select count(id) from t_emp";
     Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
     System.out.println(count);
@@ -4065,7 +4061,7 @@ public void selectCount(){
 
 #### ①什么是事务
 
-数据库事务( transaction)是访问并可能操作各种数据项的一个数据库操作序列，这些操作要么全部执行,要么全部不执行，是一个不可分割的工作单位。事务由事务开始与事务结束之间执行的全部数据库操作组成。
+数据库事务( transaction)是访问并可能操作各种数据项的一个数据库操作序列，这些操作要么全部执行，要么全部不执行，是一个不可分割的工作单位。事务由事务开始与事务结束之间执行的全部数据库操作组成。
 
 #### ②事务的特性
 
@@ -4108,7 +4104,7 @@ try {
     // 提交事务
     conn.commit();
 
-}catch(Exception e){
+}catch(Exception e) {
 
     // 回滚事务
     conn.rollBack();
@@ -4189,7 +4185,7 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    public void buyBook(Integer bookId, Integer userId){
+    public void buyBook(Integer bookId, Integer userId) {
         bookService.buyBook(bookId, userId);
     }
 }
@@ -4288,7 +4284,7 @@ public class TxByAnnotationTest {
     private BookController bookController;
 
     @Test
-    public void testBuyBook(){
+    public void testBuyBook() {
         bookController.buyBook(1, 1);
     }
 
@@ -4536,12 +4532,12 @@ public void buyBook(Integer bookId, Integer userId) {
 
 一共有七种传播行为：
 
-- REQUIRED：支持当前事务，如果不存在就新建一个(默认)**【没有就新建，有就加入】**
-- SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行**【有就加入，没有就不管了】**
-- MANDATORY：必须运行在一个事务中，如果当前没有事务正在发生，将抛出一个异常**【有就加入，没有就抛异常】**
-- REQUIRES_NEW：开启一个新的事务，如果一个事务已经存在，则将这个存在的事务挂起**【不管有没有，直接开启一个新事务，开启的新事务和之前的事务不存在嵌套关系，之前事务被挂起】**
-- NOT_SUPPORTED：以非事务方式运行，如果有事务存在，挂起当前事务**【不支持事务，存在就挂起】**
-- NEVER：以非事务方式运行，如果有事务存在，抛出异常**【不支持事务，存在就抛异常】**
+- REQUIRED：支持当前事务，如果不存在就新建一个(默认) **【没有就新建，有就加入】**
+- SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行 **【有就加入，没有就不管了】**
+- MANDATORY：必须运行在一个事务中，如果当前没有事务正在发生，将抛出一个异常 **【有就加入，没有就抛异常】**
+- REQUIRES_NEW：开启一个新的事务，如果一个事务已经存在，则将这个存在的事务挂起 **【不管有没有，直接开启一个新事务，开启的新事务和之前的事务不存在嵌套关系，之前事务被挂起】**
+- NOT_SUPPORTED：以非事务方式运行，如果有事务存在，挂起当前事务 **【不支持事务，存在就挂起】**
+- NEVER：以非事务方式运行，如果有事务存在，抛出异常 **【不支持事务，存在就抛异常】**
 - NESTED：如果当前正有一个事务在进行中，则该方法应当运行在一个嵌套式事务中。被嵌套的事务可以独立于外层事务进行提交或回滚。如果外层事务不存在，行为就像REQUIRED一样。**【有事务的话，就在这个事务里再嵌套一个完全独立的事务，嵌套的事务可以独立的提交和回滚。没有事务就和REQUIRED一样。】**
 
 **②测试**
@@ -4584,7 +4580,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 @Autowired
 private CheckoutService checkoutService;
 
-public void checkout(Integer[] bookIds, Integer userId){
+public void checkout(Integer[] bookIds, Integer userId) {
     checkoutService.checkout(bookIds, userId);
 }
 ```
@@ -4625,7 +4621,7 @@ import javax.sql.DataSource;
 public class SpringConfig {
 
     @Bean
-    public DataSource getDataSource(){
+    public DataSource getDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/spring?characterEncoding=utf8&useSSL=false");
@@ -4635,14 +4631,14 @@ public class SpringConfig {
     }
 
     @Bean(name = "jdbcTemplate")
-    public JdbcTemplate getJdbcTemplate(DataSource dataSource){
+    public JdbcTemplate getJdbcTemplate(DataSource dataSource) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource);
         return jdbcTemplate;
     }
 
     @Bean
-    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource){
+    public DataSourceTransactionManager getDataSourceTransactionManager(DataSource dataSource) {
         DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
         dataSourceTransactionManager.setDataSource(dataSource);
         return dataSourceTransactionManager;
@@ -4664,7 +4660,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 public class TxByAllAnnotationTest {
 
     @Test
-    public void testTxAllAnnotation(){
+    public void testTxAllAnnotation() {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
         BookController accountService = applicationContext.getBean("bookController", BookController.class);
         accountService.buyBook(1, 1);
@@ -4829,7 +4825,7 @@ import org.springframework.core.io.UrlResource;
 
 public class UrlResourceDemo {
 
-    public static void loadAndReadUrlResource(String path){
+    public static void loadAndReadUrlResource(String path) {
         // 创建一个 Resource 对象
         UrlResource url = null;
         try {
@@ -5087,7 +5083,7 @@ public class TestBean implements ResourceLoaderAware {
     }
 
     //返回ResourceLoader对象的应用
-    public ResourceLoader getResourceLoader(){
+    public ResourceLoader getResourceLoader() {
         return this.resourceLoader;
     }
 
@@ -5121,7 +5117,7 @@ public class Demo3 {
     public static void main(String[] args) {
         //Spring容器会将一个ResourceLoader对象作为该方法的参数传入
         ApplicationContext ctx = new ClassPathXmlApplicationContext("bean.xml");
-        TestBean testBean = ctx.getBean("testBean",TestBean.class);
+        TestBean testBean = ctx.getBean("testBean", TestBean.class);
         //获取ResourceLoader对象
         ResourceLoader resourceLoader = testBean.getResourceLoader();
         System.out.println("Spring容器将自身注入到ResourceLoaderAware Bean 中 ？ ：" + (resourceLoader == ctx));
@@ -5166,7 +5162,7 @@ public class ResourceBean {
         return res;
     }
 
-    public void parse(){
+    public void parse() {
         System.out.println(res.getFilename());
         System.out.println(res.getDescription());
     }
@@ -5202,7 +5198,7 @@ public class Demo4 {
     public static void main(String[] args) {
         ApplicationContext ctx =
                 new ClassPathXmlApplicationContext("bean.xml");
-        ResourceBean resourceBean = ctx.getBean("resourceBean",ResourceBean.class);
+        ResourceBean resourceBean = ctx.getBean("resourceBean", ResourceBean.class);
         resourceBean.parse();
     }
 }
@@ -5358,10 +5354,10 @@ public class Demo1 {
 
     public static void main(String[] args) {
         System.out.println(ResourceBundle.getBundle("messages",
-                new Locale("en","GB")).getString("test"));
+                new Locale("en", "GB")).getString("test"));
 
         System.out.println(ResourceBundle.getBundle("messages",
-                new Locale("zh","CN")).getString("test"));
+                new Locale("zh", "CN")).getString("test"));
     }
 }
 ```
@@ -5456,7 +5452,7 @@ public class Demo2 {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
         //传递动态参数，使用数组形式对应{0} {1}顺序
-        Object[] objs = new Object[]{"atguigu",new Date().toString()};
+        Object[] objs = new Object[]{"atguigu", new Date().toString()};
 
         //www.atguigu.com为资源文件的key值,
         //objs为资源文件value值所需要的参数,Local.CHINA为国际化为语言
@@ -5701,7 +5697,7 @@ public class MyService1 {
     @Autowired
     private Validator validator;
 
-    public  boolean validator(User user){
+    public  boolean validator(User user) {
         Set<ConstraintViolation<User>> sets =  validator.validate(user);
         return sets.isEmpty();
     }
@@ -5812,7 +5808,7 @@ public class User {
     @Max(120)
     private int age;
 
-    @Pattern(regexp = "^1(3|4|5|7|8)\\d{9}$",message = "手机号码格式错误")
+    @Pattern(regexp = "^1(3|4|5|7|8)\\d{9}$", message = "手机号码格式错误")
     @NotBlank(message = "手机号码不能为空")
     private String phone;
 
@@ -5961,7 +5957,7 @@ public class CannotBlankValidator implements ConstraintValidator<CannotBlank, St
 
 JIT和AOT 这个名词是指两种不同的编译方式，这两种编译方式的主要区别在于是否在“运行时”进行编译
 
-**（1）JIT， Just-in-time,动态(即时)编译，边运行边编译；**
+**（1）JIT， Just-in-time，动态(即时)编译，边运行边编译；**
 
 在程序运行时，根据算法计算出热点代码，然后进行 JIT 实时编译，这种方式吞吐量高，有运行时性能加成，可以跑得更快，并可以做到动态生成代码等，但是相对启动速度较慢，并需要一定时间和调用频率才能触发 JIT 的分层机制。JIT 缺点就是编译需要占用运行时资源，会导致进程卡顿。
 
@@ -5969,17 +5965,17 @@ JIT和AOT 这个名词是指两种不同的编译方式，这两种编译方式�
 
 AOT 编译能直接将源代码转化为机器码，内存占用低，启动速度快，可以无需 runtime 运行，直接将 runtime 静态链接至最终的程序中，但是无运行时性能加成，不能根据程序运行情况做进一步的优化，AOT 缺点就是在程序运行前编译会使程序安装的时间增加。
 
-**简单来讲：**JIT即时编译指的是在程序的运行过程中，将字节码转换为可在硬件上直接运行的机器码，并部署至托管环境中的过程。而 AOT 编译指的则是，在程序运行之前，便将字节码转换为机器码的过程。
+**简单来讲：** JIT即时编译指的是在程序的运行过程中，将字节码转换为可在硬件上直接运行的机器码，并部署至托管环境中的过程。而 AOT 编译指的则是，在程序运行之前，便将字节码转换为机器码的过程。
 
 ```
-.java -> .class -> (使用jaotc编译工具) -> .so（程序函数库,即编译好的可以供其他程序使用的代码和数据）
+.java -> .class -> (使用jaotc编译工具) -> .so（程序函数库，即编译好的可以供其他程序使用的代码和数据）
 ```
 
 ![image-20221207113544080](image/README/1684165108470.png)
 
 **（3）AOT的优点**
 
-**简单来讲，**Java 虚拟机加载已经预编译成二进制库，可以直接执行。不必等待及时编译器的预热，减少 Java 应用给人带来“第一次运行慢” 的不良体验。
+**简单来讲，** Java 虚拟机加载已经预编译成二进制库，可以直接执行。不必等待及时编译器的预热，减少 Java 应用给人带来“第一次运行慢” 的不良体验。
 
 在程序运行前编译，可以避免在运行时的编译性能消耗和内存消耗
 可以在程序运行初期就达到最高性能，程序启动速度快
